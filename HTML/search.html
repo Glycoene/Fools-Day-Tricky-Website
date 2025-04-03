@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>图片搜索</title>
+    <style>
+        body {
+            background-color: black;
+            color: yellow;
+            text-align: center;
+            font-family: Arial, sans-serif;
+        }
+        h1 {
+            margin-top: 20px;
+        }
+        #search-box {
+            margin: 20px auto;
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+        }
+        input {
+            padding: 10px;
+            font-size: 16px;
+            border: 2px solid yellow;
+            background: black;
+            color: yellow;
+            outline: none;
+        }
+        button {
+            padding: 10px 15px;
+            font-size: 16px;
+            background-color: yellow;
+            color: black;
+            border: none;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: orange;
+        }
+        .gallery {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            justify-content: center;
+            padding: 20px;
+        }
+        .gallery img {
+            width: 150px;
+            height: auto;
+            border: 2px solid yellow;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>搜索结果</h1>
+
+    <div id="search-box">
+        <input type="text" id="search-input" placeholder="输入搜索内容...">
+        <button onclick="searchImages()">搜索</button>
+    </div>
+
+    <div class="gallery" id="image-gallery">
+        {{ if .error }}
+            <p style="color: red;">{{ .error }}</p >
+        {{ else }}
+            {{ range .Images }}
+                <img src="{{ . }}" alt="图片">
+            {{ end }}
+        {{ end }}
+    </div>
+
+    <script>
+        function searchImages() {
+            let keyword = document.getElementById("search-input").value;
+            if (!keyword) return;
+            window.location.href = "/search?q=" + encodeURIComponent(keyword);
+        }
+    </script>
+
+</body>
+</html>
