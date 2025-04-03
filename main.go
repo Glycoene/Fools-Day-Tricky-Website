@@ -16,7 +16,7 @@ func getImages(dir string) ([]string, error) {
 		}
 		if !d.IsDir() {
 			ext := filepath.Ext(path)
-			if ext == ".png" || ext == ".jpg" || ext == ".jpeg" || ext == ".gif" {
+			if ext == ".png" || ext == ".jpg" || ext == ".jpeg" || ext == ".gif" || ext == ".PNG" || ext == ".JPG" || ext == ".JPEG" || ext == ".GIF" {
 				images = append(images, "/"+filepath.ToSlash(path))
 			}
 		}
